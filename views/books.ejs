@@ -1,0 +1,122 @@
+<%-include('parts/top.ejs') %> 
+
+<!-- Header -->
+<header class="">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="/"><h2>Sixteen <em>Books</em></h2></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li> 
+          <% if(verifUser) {%>
+          <li class="nav-item active">
+            <a class="nav-link active" href="books">All books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="addbook">Add book</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mybooks">My Books</a>
+          </li>
+          <% }else{ %>
+          <li class="nav-item">
+           <a class="nav-link" href="login">Login</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" href="register">Register</a>
+          </li>
+          <% } %>
+          <li class="nav-item">
+           <a class="nav-link" href="about">About Us</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" href="contact">Contact Us</a>
+         </li>
+        </ul>
+           <% if(verifUser) {%>
+            <form class="buttonlogout" method='post' action="/logout">
+              <button class="btn btn-danger" type="submit">Logout</button>
+            </form>
+          <% } %>  
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Page Content -->
+<div class="page-heading products-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-content">
+            <h4>new arrivals</h4>
+            <h2>sixteen books</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="products">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="filters">
+            <ul>
+                <li class="active" data-filter="*">All books</li>
+                <li data-filter=".des">Featured</li>
+                <li data-filter=".dev">Flash Deals</li>
+                <li data-filter=".gra">Last Minute</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="filters-content">
+              <div class="row grid">
+
+                <% for (let book of books) { %>
+                  <div class="col-lg-4 col-md-4 all des">
+                    <div class="product-item">
+                      <a href="/books/<%= book._id %>" target="_blank"><img style='height: 388px' src="uploads/<%=book.image%>" alt=""></a>
+                      <div class="down-content">
+                        <a href="/books/<%= book._id %>"><h4><%=book.title%></h4></a>
+                        <h6><%=book.price%> $</h6>
+                        <p><%=book.description%></p>
+                        <ul class="stars">
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                        <span>Reviews (12)</span>
+                      </div>
+                    </div>
+                  </div>
+                <% } %>
+
+              </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <ul class="pages">
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%-include('parts/bottom.ejs')%>

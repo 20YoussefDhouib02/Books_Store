@@ -1,0 +1,1 @@
+This repository presents a server side rendering project using Express.js, Node.js and MongoDB.
